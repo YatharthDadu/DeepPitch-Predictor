@@ -1,6 +1,7 @@
-import pytest
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
 from src.data_ingestion.player_stats_fetcher import load_player_stats_csv
 
 
@@ -16,6 +17,6 @@ def test_load_player_stats_csv_returns_dataframe():
         assert isinstance(df, pd.DataFrame), "Must return a Pandas DataFrame."
         assert not df.empty, "DataFrame should not be empty."
 
-        expected_columns = ['Player', 'Squad', 'Comp', 'xG', 'PrgP', 'Tkl+Int']
+        expected_columns = ["Player", "Squad", "Comp", "xG", "PrgP", "Tkl+Int"]
         for col in expected_columns:
             assert col in df.columns, f"Missing expected advanced metric column: {col}"

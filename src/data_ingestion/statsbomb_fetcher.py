@@ -1,11 +1,12 @@
 import logging
+
 import pandas as pd
-from statsbombpy import sb
 from dotenv import load_dotenv
+from statsbombpy import sb
 
 load_dotenv()
 
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)
 
 
@@ -25,7 +26,7 @@ def fetch_barcelona_matches() -> pd.DataFrame:
 
         processed_df = matches_df.copy(deep=True)
 
-        barca_mask = (processed_df['home_team'] == 'Barcelona') | (processed_df['away_team'] == 'Barcelona')
+        barca_mask = (processed_df["home_team"] == "Barcelona") | (processed_df["away_team"] == "Barcelona")
         barca_matches_df = processed_df[barca_mask].copy(deep=True)
 
         logger.info(f"Successfully fetched and isolated {len(barca_matches_df)} Barcelona matches.")

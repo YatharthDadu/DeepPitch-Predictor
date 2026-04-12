@@ -1,26 +1,19 @@
 import logging
+
 import pandas as pd
 from xgboost import XGBClassifier
 
 logger = logging.getLogger(__name__)
 
+
 class MatchPredictor:
 
     def __init__(self):
         logger.info("Initializing the XGBoost Match Predictor...")
-        self.model = XGBClassifier(
-            objective='multi:softprob',
-            num_class=3,
-            eval_metric='mlogloss',
-            random_state=42
-        )
+        self.model = XGBClassifier(objective="multi:softprob", num_class=3, eval_metric="mlogloss", random_state=42)
 
         self.is_trained = False
-        self.class_mapping = {
-            0: 'Away Win',
-            1: 'Draw',
-            2: 'Home Win'
-        }
+        self.class_mapping = {0: "Away Win", 1: "Draw", 2: "Home Win"}
 
     def train(self, X_train: pd.DataFrame, y_train: pd.Series) -> None:
         try:
@@ -49,7 +42,7 @@ class MatchPredictor:
             result_dict = {
                 self.class_mapping[0]: round(float(probabilities_array[0]), 3),
                 self.class_mapping[1]: round(float(probabilities_array[1]), 3),
-                self.class_mapping[2]: round(float(probabilities_array[2]), 3)
+                self.class_mapping[2]: round(float(probabilities_array[2]), 3),
             }
 
             logger.info(f"Prediction successful: {result_dict}")

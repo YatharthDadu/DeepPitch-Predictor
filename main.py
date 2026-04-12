@@ -1,10 +1,7 @@
 import os
 
 # Define the folder paths
-folders = [
-    "src/data_ingestion",
-    "tests"
-]
+folders = ["src/data_ingestion", "tests"]
 
 # Define the file paths
 files = [
@@ -14,7 +11,7 @@ files = [
     "tests/__init__.py",
     "tests/test_statsbomb_fetcher.py",
     ".env",
-    "requirements.txt"
+    "requirements.txt",
 ]
 new_folder = "data/raw"
 
@@ -28,7 +25,7 @@ for folder in folders:
 
 # Create empty files
 for file in files:
-    with open(file, 'w') as f:
+    with open(file, "w") as f:
         pass
 
 print("File structure created successfully!")
