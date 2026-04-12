@@ -19,3 +19,12 @@ def test_load_player_stats_csv_returns_dataframe():
         expected_columns = ['Player', 'Squad', 'Comp', 'xG', 'PrgP', 'Tkl+Int']
         for col in expected_columns:
             assert col in df.columns, f"Missing expected advanced metric column: {col}"
+
+
+def test_load_player_stats_csv_file_not_found():
+    """
+    Test that load_player_stats_csv raises FileNotFoundError when the file does not exist.
+    """
+    non_existent_path = "data/raw/non_existent_file.csv"
+    with pytest.raises(FileNotFoundError):
+        load_player_stats_csv(filepath=non_existent_path)
