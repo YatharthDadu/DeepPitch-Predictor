@@ -1,4 +1,3 @@
-import pytest
 import pandas as pd
 from src.match_prediction.feature_merger import combine_prediction_features
 
