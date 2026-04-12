@@ -28,15 +28,15 @@ def calculate_h2h_stats(history_df: pd.DataFrame, target_home_team: str, target_
             logger.info("Teams have no historical matchups in this dataset. Defaulting to 33% split.")
             return _default_split()
 
-        home_wins_a = len(scenario_a[scenario_a['FTR'] == 'H'])
-        home_wins_b = len(scenario_b[scenario_b['FTR'] == 'A'])
+        home_wins_a = (scenario_a['FTR'] == 'H').sum()
+        home_wins_b = (scenario_b['FTR'] == 'A').sum()
         target_home_wins = home_wins_a + home_wins_b
 
-        away_wins_a = len(scenario_a[scenario_a['FTR'] == 'A'])
-        away_wins_b = len(scenario_b[scenario_b['FTR'] == 'H'])
+        away_wins_a = (scenario_a['FTR'] == 'A').sum()
+        away_wins_b = (scenario_b['FTR'] == 'H').sum()
         target_away_wins = away_wins_a + away_wins_b
 
-        draws = len(scenario_a[scenario_a['FTR'] == 'D']) + len(scenario_b[scenario_b['FTR'] == 'D'])
+        draws = (scenario_a['FTR'] == 'D').sum() + (scenario_b['FTR'] == 'D').sum()
 
         h2h_stats = {
             'h2h_home_win_rate': round(target_home_wins / total_matches, 3),
