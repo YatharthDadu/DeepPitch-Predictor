@@ -1,23 +1,18 @@
 import logging
+
 import pandas as pd
 
 logger = logging.getLogger(__name__)
 
+
 def combine_prediction_features(
-        home_team: str,
-        away_team: str,
-        historical_stats: dict,
-        home_form: dict,
-        away_form: dict
+    home_team: str, away_team: str, historical_stats: dict, home_form: dict, away_form: dict
 ) -> pd.DataFrame:
 
     try:
         logger.info(f"Merging features for {home_team} (Home) vs {away_team} (Away)...")
 
-        merged_features = {
-            'home_team': home_team,
-            'away_team': away_team
-        }
+        merged_features = {"home_team": home_team, "away_team": away_team}
 
         for key, value in historical_stats.items():
             merged_features[key] = value

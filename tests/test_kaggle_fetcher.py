@@ -1,6 +1,7 @@
-import pytest
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+
 from src.data_ingestion.kaggle_fetcher import load_sqlite_match_data
 
 
@@ -16,6 +17,6 @@ def test_load_sqlite_match_data_returns_dataframe():
         assert isinstance(df, pd.DataFrame), "Must return a Pandas DataFrame."
         assert not df.empty, "DataFrame should not be empty."
 
-        assert 'country' in df.columns, "Missing 'country' from the JOIN."
-        assert 'name' in df.columns, "Missing division 'name' from the JOIN."
-        assert pd.api.types.is_datetime64_any_dtype(df['Date']), "Date column was not converted to datetime."
+        assert "country" in df.columns, "Missing 'country' from the JOIN."
+        assert "name" in df.columns, "Missing division 'name' from the JOIN."
+        assert pd.api.types.is_datetime64_any_dtype(df["Date"]), "Date column was not converted to datetime."
